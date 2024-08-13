@@ -1,4 +1,68 @@
-# SNAP-COLA
-Machine readable file with allotments, income eligibility standards, and deductions for the USDA Food and Nutrition Service - Supplemental Nutrition Assistance Program.
+# Machine-readable dataset for estimating eligiblity, deductions, and allotments for the Supplemental Nutrition Education Program (SNAP)
 
-I prepared this machine readable file because I could not find a single resource that provided, over time, information on maximum allotments, income eligiblity standards, and deductions for the SNAP program. My plan is to update this document as time allows for other researchers, as well as the effort of my own team in ACES at Illinois.
+This repository contains a series of machine-readable files detailing allotments, income eligibility standards, and deductions for the USDA Food and Nutrition Service's Supplemental Nutrition Assistance Program (SNAP). Deductions play an important role in determining SNAP benefits. They reflect the fact that not all of a household’s income is available for purchasing food; some must be used to meet other needs.
+
+This dataset was created by our team in response to the absence of a comprehensive resource that provides longitudinal information on maximum allotments, income eligibility standards, and deductions for the SNAP program.
+Our plan is to update these data tables periodically, making them available to other researchers and for use by our team within ACES at the University of Illinois. These datasets will support our ongoing efforts to estimate the eligibility and participation rates of community members in the SNAP program, thereby enhancing the effectiveness of SNAP-Ed programming and services.
+
+To determine if a unit is eligible for SNAP, this resource focuses specifically on the income tests applied to a SNAP unit’s gross and net earnings. SNAP considers all cash income from various sources, including earned income (before payroll taxes are deducted) and unearned income, such as cash assistance, Social Security benefits, unemployment insurance, and child support.
+
+It is important to note that this resource does not cover all aspects of SNAP eligibility. Therefore, it should not be regarded as a comprehensive tool for determining individual eligibility. Rather, we have designed these files to assist in conducting statistical estimations. Under federal rules, to be eligible for SNAP benefits, a unit’s income must pass two critical tests: a) **Gross Monthly Income**, or the household income before any deductions are applied, and b) **Net Income**, or the household income after all allowable deductions have been applied. The net income must be at or below the poverty line for the unit to qualify for SNAP benefits.
+
+
+## income_eligiblity.csv
+For a unit to be eligible for participation in the Supplemental Nutrition Assistance Program (SNAP), it must satisfy both the gross and net income limits. These limits are crucial determinants of eligibility and vary according to several factors, including household size, geographic location, and specific poverty thresholds. This data table is designed to equip the estimation program with the essential standards, ensuring accurate assessments of eligibility based on the date of the survey and relevant household characteristics.
+
+The table provides two key pieces of information. First, it identifies the standard that should be applied based on the date of the survey. This is particularly important because the income eligibility thresholds and the associated deductions can change over time, often adjusting annually in line with inflation or policy updates. For accurate estimation, it is critical to apply the correct standard that corresponds with the survey date. Second, the table provides the specific values that should be used as the standard based on household characteristics, such as household size and the application of 100%, 130%, or 165% of the poverty line. These percentages correspond to different income limits depending on the household’s circumstances, such as the presence of elderly or disabled members. (Please refer to policy documentation to understand the situations in which these values apply.)
+
+It is important to note that the standards in this table also vary based on geography, although there is no variation across states within the contiguous United States (CONUS). However, variations do exist for non-CONUS areas, such as Alaska, Hawaii, Guam, and the Virgin Islands, where the cost of living and other factors necessitate different income thresholds.
+
+Understanding the difference between gross and net income is essential when using this data table. Gross income refers to a household's total, non-excluded income before any deductions are made. This includes all income sources, such as wages, Social Security benefits, unemployment insurance, and child support. To qualify for SNAP, most households must have a gross income at or below 130% of the federal poverty line, although this threshold can differ slightly depending on the geographic location and specific household circumstances outlined in the table.
+
+Net income, by contrast, is the household's gross income after subtracting allowable deductions. These deductions might include expenses such as dependent care costs, medical expenses for elderly or disabled members, and certain shelter costs that exceed half of the household’s income after other deductions. For households that include an elderly or disabled person, meeting the gross income limit is not required; they only need to meet the net income limit to qualify for SNAP. This distinction is significant because it provides a more accurate reflection of a household’s available resources and ensures that the most vulnerable populations receive the support they need.
+
+The data table also accounts for household size, which is a critical variable in determining both gross and net income limits. Larger households have higher income thresholds because their needs are greater, while smaller households have lower thresholds. Additionally, the application of 100%, 130%, or 165% of the poverty line provides flexibility in assessing eligibility across different household compositions and circumstances. For example, a household that includes elderly or disabled members may qualify for a higher percentage of the poverty line, reflecting the increased financial challenges faced by such households.
+
+
+## deduction_standardANDshelter.csv
+Each SNAP unit is allocated a standard deduction, the amount of which is determined by the number of individuals in the unit. This standard deduction is available to all SNAP households to account for basic, unavoidable costs.
+
+The excess shelter deduction is calculated as the amount by which a household’s housing costs (including utilities) exceed half of its net income after all other deductions have been applied. For instance, in 2024, the excess shelter deduction is capped at $672 in 48 states and the District of Columbia, unless at least one household member is an older adult or has a disability. For specific application of this excess shelter deduction within the SNAP benefit calculation, please consult your preferred resource on SNAP policy implementation.
+
+According to a CBPP analysis of pre-pandemic 2020 SNAP Quality Control Household Characteristics data, over two-thirds (70 percent) of SNAP households claim the shelter deduction.
+
+The data table is organized into five groups of columns:
+1. **Geography**: The first column group addresses the geographical regions—CONUS, Alaska, Hawaii, Guam, and the Virgin Islands—each of which has different standard and excess shelter deductions.
+2. **Dates**: The second group of columns specifies the dates these values were in effect. This includes the Federal Fiscal Year during which these deductions were applicable, as well as the specific month and year. This information is crucial if you are working with data sources (e.g., the American Community Survey) that are collected on a rolling basis.
+3. **Standard Deduction by Household Size**: The third group of columns details the standard deduction according to household size. The columns are labeled accordingly: `SD_household1` for a SNAP unit of 1, `SD_household2` for a SNAP unit of 2, and so on. The final column, `SD_household6more`, represents the standard deduction for units of 6 or more members. There is no additional standard deduction beyond this column for units with 8, 9, or 10 members.
+4. **Excess Shelter Deduction**: The fourth group of columns focuses on the excess shelter deduction, including a flat value for those who are homeless.
+5. **Data Citation**: The final column provides the citation for each data line.
+
+
+## deduction_utility.csv
+Standard Utility Allowances (SUAs) are used by states to represent the utility costs of low-income households in a given state or local area, as actual utility costs can often be difficult to determine. SUAs can be applied in place of a household's actual utility expenses when determining SNAP eligibility and benefit amounts. In most states, the use of SUAs is mandatory. However, in states where SUAs are optional, households may choose to claim actual utility expenses, but they must provide documentation for all claimed costs.
+
+The following bills are recognized as utilities for SNAP purposes: heating, electricity, cooking fuel, water and/or sewerage, garbage collection fees, basic telephone service (including cell phones), well installation and maintenance, septic tank installation and maintenance, fees for initiating utility service, and a flat rate for utilities.
+
+Due to the lack of historical national data from USDA FNS, which currently provides SUAs only for FY24, we have opted to use the State of Illinois’ guidelines for utilities as a temporary substitute. We encourage future collaborators to revise this data when more comprehensive historical data becomes available. It is important to note that SUAs can vary by household size in states such as Arizona, Guam, Hawaii, North Carolina, Tennessee, and Virginia. Additionally, SUAs can differ by location in states like Alaska and New York. The state-level historical information we have sourced from Illinois does not capture these variations.
+
+The next consideration is determining which utility standard should be used to calculate net income for a SNAP unit.
+
+Based on our current understanding, a SNAP unit qualifies for the **Air Conditioning/Heating Standard** if the unit meets one of the following criteria: the unit has received or is receiving a LIHEAP payment of $21 or more during the month of application or within the last 12 months, or the unit is billed for heating and/or air conditioning, or incurs excess costs for heating and/or air conditioning.
+
+If the unit does not qualify for the Air Conditioning/Heating Standard, the next step is to apply the **Limited Utility Standard** if the unit is billed for at least two of the following utilities: electricity (excluding A/C or heat), cooking fuel, water and/or sewage, garbage collection, basic telephone service, well installation/maintenance, or septic tank installation/maintenance.
+
+If the unit does not qualify for either the Air Conditioning/Heating or Limited Utility Standard, the **Single Utility Standard** should be applied if the unit is billed for one of the following utilities: electricity (excluding A/C or heat), cooking fuel, water and/or sewage, garbage collection, well installation/maintenance, or septic tank installation/maintenance.
+
+Finally, if the unit does not meet the criteria for any of the previous standards, the **Telephone Standard** should be applied. This standard allows for the deduction of basic telephone service expenses, including cell phone service, when it is the unit’s only utility expense.
+
+Each entry in the data table includes the utility standard (telephone, ac_heat, limited, single), the month and year the standard took effect, the allowance amount, and the citation for the data provided in the table.
+
+## deduction_dependentcare.csv
+Dependent care costs may be eligible for deduction when the care is necessary for a child under the age of 18 or an incapacitated person of any age. Allowable dependent care costs include expenses for individual care providers or care facilities, transportation to and from the care facility, and fees associated with the care provided to the dependent, which are necessary for the household to participate in the care. Importantly, the fees do not need to be mandatory to qualify for the deduction. While the household must specify the fee, verification is not required. Examples of allowable dependent care costs include fees for activities such as an art class in an after-school program, additional equipment fees for attending a sports camp, or the cost of field trips sponsored by summer camps. Like all dependent care costs, these fees are deductible if they are necessary for a household member to search for employment, accept or continue employment, or pursue training or education in preparation for a job. There is no cap on the amount that can be deducted.
+
+Notably, only 3 percent of all SNAP households claim the dependent care deduction, according to an analysis of pre-pandemic 2020 SNAP Quality Control Household Characteristics data conducted by the Center on Budget and Policy Priorities (CBPP).
+
+After 2008, the determination of adjusted income for SNAP eligibility transitioned from a standard allowance to actual monthly costs incurred per dependent child or disabled adult. Because this specific information is not typically captured in federal surveys such as the American Community Survey, I will use the maximum dependent care deduction amount (as of October 2008) adjusted by the Consumer Price Index (CPI) to estimate monthly costs incurred per dependent child or disabled adult.
+
+The dataset contains four columns: the year (for application), the average percent change in CPI (sourced from the Federal Reserve Bank of Minneapolis, link), ‘dependentcare_under2’ (starting from 2008, and adjusted by the change in CPI), and ‘dependentcare’ (starting from 2008, and adjusted by the change in CPI). These values should be regarded as estimates.
