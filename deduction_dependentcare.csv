@@ -1,0 +1,18 @@
+year,Average percent change in CPI,dependentcare_under2,dependentcare,
+2008,.,200,175,"After 2008, use actual monthly costs per each dependent child or disabled adult. We are going to use an estimate since this isn't a value tracked by the ACS."
+2009,-0.4,199.2,174.3,https://www.dhs.state.il.us/page.aspx?item=21871
+2010,1.6,202.39,177.09,
+2011,3.2,208.86,182.76,
+2012,2.1,213.25,186.59,
+2013,1.5,216.45,189.39,
+2014,1.6,219.91,192.42,
+2015,0.1,220.13,192.62,
+2016,1.3,222.99,195.12,
+2017,2.1,227.68,199.22,
+2018,2.4,233.14,204,
+2019,1.8,237.34,207.67,
+2020,1.2,240.18,210.16,
+2021,4.7,251.47,220.04,
+2022,8,271.59,237.64,
+2023,4.1,282.73,247.39,
+2024,.,.,.,
