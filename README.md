@@ -1,4 +1,4 @@
-# Machine-readable dataset for estimating eligiblity, deductions, and allotments for the Supplemental Nutrition Education Program (SNAP)
+# Machine-readable dataset for estimating eligiblity, deductions, and allotments for the Supplemental Nutrition Assistance Program (SNAP)
 
 This repository contains a series of machine-readable files detailing allotments, income eligibility standards, and deductions for the USDA Food and Nutrition Service's Supplemental Nutrition Assistance Program (SNAP). Deductions play an important role in determining SNAP benefits. They reflect the fact that not all of a household’s income is available for purchasing food; some must be used to meet other needs.
 
